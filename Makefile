@@ -5,18 +5,17 @@ all:
 	make index.html
 
 index.html: data/clean/penguins_clean.csv \
-			output/model.RDS \
-			output/summary.RDS \
-			output/penguin.png \
-			data/clean/pengiuns_test.csv \
-			data/clean/pengiuns_train.csv \
-			output/model_fit.RDS \
-			output/prediction.RDS \
-			output/confusion_matrix.RDS \
-			report/report.html \
-			report/report.pdf \
-			quarto render report/report.qmd
-			cp report/report.html docs/index.html
+		output/model.RDS \
+		output/summary.RDS \
+		output/penguin.png \
+		data/clean/pengiuns_test.csv \
+		data/clean/pengiuns_train.csv \
+		output/model_fit.RDS \
+		output/prediction.RDS \
+		output/confusion_matrix.RDS \
+		report/report.html \
+		report/report.pdf 
+		cp report/report.html docs/index.html
 
 
 data/clean/penguins_clean.csv: src/01_load_data.R
@@ -40,5 +39,4 @@ report/report.pdf: output report/report.qmd
 clean:
 	rm -f output/*
 	rm -f data/clean/*
-	rm -f docs/*
 	rm -f *.pdf
