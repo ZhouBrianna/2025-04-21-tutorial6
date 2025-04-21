@@ -1,0 +1,65 @@
+---
+title: "Tutorial 6: Refactoring R Code"
+format:
+  html:
+    embed-resources: true
+---
+
+# Introduction
+
+In this tutorial, you will refactor the code into separate scripts corresponding to each section. The dataset we will use comes from the `palmerpenguins` package, which contains measurements of penguins from three species.
+
+## Load Libraries and Data
+
+```{r}
+#| echo: fenced
+library(tidyverse)
+library(palmerpenguins)
+library(tidymodels)
+
+data <- penguins
+
+# Initial cleaning: Remove missing values
+data <- data %>% drop_na()
+```
+
+# Methods
+
+In this section, we perform exploratory data analysis (EDA) and prepare the data for modeling.
+
+```{r}
+# Summary statistics
+glimpse(data)
+```
+![](../output/penguin.png)
+# Model
+
+We will fit a classification model using `tidymodels` to predict the species of a penguin based on its physical characteristics.
+
+```{r}
+#| echo: false
+#| tbl-cap: Classification model.
+# Run 03_model.R
+penguin_fit <- readr::read_rds("../output/model_fit.RDS")
+knitr::kable(summary(penguin_fit))
+```
+
+# Results
+
+We evaluate the performance of the model using the test dataset.
+
+```{r}
+#| echo: false
+#| tbl-cap: Confusion Matrix.
+conf_mat <- readr::read_rds("../output/confusion_matrix.RDS") 
+knitr::kable(conf_mat$table)
+```
+
+# Conclusion
+
+In this tutorial, we:
+
+- Loaded and cleaned the `palmerpenguins` dataset.
+- Performed exploratory data analysis.
+- Built a k-Nearest Neighbors classification model using `tidymodels`.
+- Evaluated the model's performance.
