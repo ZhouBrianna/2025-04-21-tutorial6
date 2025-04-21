@@ -1,4 +1,4 @@
-.PHONY: all clean report
+.PHONY: all clean 
 
 all:
 	make clean
